@@ -1,0 +1,69 @@
+<div class="f-acciones-cabecera ui-g ui-fluid">
+  <acciones-cabecera [componente]="componentehijo" [grabar]="false" [cargar]="true"></acciones-cabecera>
+</div>
+<form #formFiltros="ngForm" class="f-filtros ui-g ui-fluid shadow-box ui-shadow-1">
+  
+    <div class="ui-g-12 ui-g-nopad">
+         
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-6 ui-md-2">
+          <label for="fperiodo" class="ui-outputlabel required">Periodo:</label>
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <input type="text" pInputText id="fperiodo" name="fperiodo" [(ngModel)]="mfiltros.fperiodo" autofoco required
+            entero maxlength="4" minlength="4" />
+        </div>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-6 ui-md-2">
+          <label for="finicio" class="ui-outputlabel required">Mes:</label>
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <p-dropdown id="lmesesini" name="lmesesini" [options]="lmesesini" [(ngModel)]="this.mfiltros.finicio">
+          </p-dropdown>
+        </div>
+      </div>
+    
+
+
+  </div>
+  <div class="f-contenedor-transaccion">
+    <div class="f-datacontent ui-g ui-fluid">
+      <div class="ui-g-12 ui-g-nopad">
+        <p-dataTable [paginator]="true" [rows]="50" [value]="lregistros" [responsive]="true" scrollable="true" scrollHeight="250px">
+          <p-header>
+            <div class="ui-table-title">REPORTE G42</div>
+            <acciones-consulta [componente]="componentehijo" [anterior]="false" [siguiente]="false">
+            </acciones-consulta>
+          </p-header>
+          <p-column field="tipoIdParticipe" header="Tipo id. partícipe" [style]="{'width':'35%'} "></p-column>
+          <p-column field="idParticipe" header="Identificación partícipe" [style]="{'width':'40%'}"></p-column>
+          <p-column field="tipoPrestacion" header="Tipo de prestación" [style]="{'width':'33%'}"></p-column>
+          <p-column field="aportePatronal" header="Aporte patronal" [style]="{'width':'37%'}"></p-column>
+          <p-column field="aportePersonal" header="Aporte personal" [style]="{'width':'45%'}"></p-column>
+          <p-column field="aporteVoluntario" header="Aporte Voluntario" [style]="{'width':'47%'}"></p-column>
+          <p-column field="saldoAportePat" header="Saldo aporte Patronal" [style]="{'width':'50%'}"></p-column>
+          <p-column field="saldoAportePer" header="Saldo aporte Personal" [style]="{'width':'55%'}"></p-column>
+          <p-column field="saldoAporteVol" header="Saldo aporte Voluntarios" [style]="{'width':'40%'}"></p-column>
+         <p-column field="saldoRendimiento" header="Saldo rendimiento total" [style]="{'width':'40%'}"></p-column>
+          
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="f-datacontent ui-g ui-fluid f-center-items">
+  <div class="ui-g-12 ui-md-8 ui-lg-4 ui-g-nopad ui-datatable ui-datatable-header">
+    <p-dataTable [value]="lregistrosTabla" [responsive]="true">
+      <p-header>
+        <div class="ui-table-title">Generar Reporte</div>
+        <div class="f-acciones-cab-tabla">
+          <button type="button" pButton icon="ui-icon-file-download" (click)="imprimir()" class="f-btn green-btn f-text"
+            style="text-align:center"> </button>
+            <button type="button" pButton icon="ui-icon-grid-on" (click)="imprimirExcel()" class="f-btn green-btn f-text"
+              style="text-align:center;"> </button>
+        </div>
+      </p-header>
+    </p-dataTable>
+  </div>
+</div>
